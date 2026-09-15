@@ -1,12 +1,13 @@
 <div align="center">
 
-<img src="./assets/eobuba-cover.png" width="900" alt="어부바 - 어르신 부담 바로 덜기" />
+<img src="./assets/eobuba-wordmark.png" width="520" alt="어부바 로고" />
 
-<br /><br />
+### 말 한마디로 준비하는 은행 방문
+
+은행 업무를 평소 쓰는 말로 설명하면  
+방문 필요 여부부터 준비물·지점·추천 시간까지 차례로 안내합니다.
 
 [서비스 바로가기](https://eobuba-frontend.vercel.app) · [Frontend](https://github.com/eobuba-official/frontend) · [Backend](https://github.com/eobuba-official/backend)
-
-<br />
 
 </div>
 
