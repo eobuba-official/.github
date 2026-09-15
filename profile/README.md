@@ -2,9 +2,11 @@
 
 <img src="./assets/eobuba-cover.png" width="900" alt="어부바 - 어르신 부담 바로 덜기" />
 
-<br />
+<br /><br />
 
 [서비스 바로가기](https://eobuba-frontend.vercel.app) · [Frontend](https://github.com/eobuba-official/frontend) · [Backend](https://github.com/eobuba-official/backend)
+
+<br />
 
 </div>
 
