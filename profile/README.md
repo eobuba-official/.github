@@ -1,13 +1,8 @@
 <div align="center">
 
-<img src="./assets/eobuba-mascot.png" width="200" alt="어르신을 업은 어부바 호두과자 캐릭터" />
+<img src="./assets/eobuba-cover.png" width="900" alt="어부바 - 어르신 부담 바로 덜기" />
 
-# 어부바
-
-### 말 한마디로 준비하는 은행 방문
-
-은행 업무가 낯선 사용자가 평소 쓰는 말로 용건을 설명하면  
-업무명, 준비물, 방문할 지점과 시간을 차례로 확인할 수 있도록 돕는 시니어 친화형 웹 서비스입니다.
+<br />
 
 [서비스 바로가기](https://eobuba-frontend.vercel.app) · [Frontend](https://github.com/eobuba-official/frontend) · [Backend](https://github.com/eobuba-official/backend)
 
