@@ -4,10 +4,10 @@
 
 ### 어르신 부담 바로 덜기
 
-은행 업무를 평소 쓰는 말로 설명하면  
-방문 필요 여부부터 준비물·지점·추천 시간까지 차례로 안내합니다.
+**평소 쓰는 말로 시작하는, 어르신을 위한 은행 방문 준비 서비스**  
+방문이 필요한지부터 준비물, 지점, 방문 시간까지 차례로 안내합니다.
 
-[서비스 바로가기](https://eobuba-frontend.vercel.app) · [Frontend](https://github.com/eobuba-official/frontend) · [Backend](https://github.com/eobuba-official/backend)
+[서비스 바로가기](https://eobuba-frontend.vercel.app) · [시연영상 보기](https://youtu.be/w3Trf9_KnME?si=GOVK2Tl9EFuHXVbH) · [Frontend](https://github.com/eobuba-official/frontend) · [Backend](https://github.com/eobuba-official/backend)
 
 </div>
 
@@ -21,15 +21,25 @@
 
 > 어부바는 금융 거래나 방문 예약을 대신하지 않으며, 은행 방문 준비를 돕는 안내 서비스입니다.
 
+## 시연영상
+
+[![어부바 서비스 시연영상 — 클릭하면 YouTube로 이동합니다](https://img.youtube.com/vi/w3Trf9_KnME/hqdefault.jpg)](https://www.youtube.com/watch?v=w3Trf9_KnME)
+
+**[YouTube에서 시연영상 보기 ↗](https://www.youtube.com/watch?v=w3Trf9_KnME)**
+
 ## 서비스 흐름
 
 ```mermaid
-flowchart LR
-    A["음성 또는 직접 입력"] --> B["은행 업무 확인"]
-    B --> C["방문 필요 여부 확인"]
-    C --> D["준비물 체크"]
-    D --> E["지점과 시간 비교"]
-    E --> F["방문 정보 요약"]
+flowchart TD
+    A["음성 또는 직접 입력"] --> B["인식 결과 확인·수정"]
+    B --> C{"금융사기 의심 신호"}
+    C -->|감지| W["안전 경고·공식 채널 확인 안내"]
+    C -->|미감지| D["은행 업무 확인"]
+    D --> E{"방문 필요 여부"}
+    E -->|방문 불필요| N["비대면 처리 방법·공식 확인 채널 안내"]
+    E -->|방문 필요| F["상황별 질문·준비물 체크"]
+    F --> G["지점과 방문 시간 비교"]
+    G --> H["방문 정보 요약"]
 ```
 
 ## 주요 화면
@@ -77,8 +87,6 @@ flowchart LR
 | **지점·시간 추천** | 해당 업무를 처리할 수 있는 지점만 추린 뒤 거리와 예상 대기시간을 함께 고려한 후보를 보여줍니다. |
 | **금융사기 신호 경고** | 입력 내용에서 금융사기 의심 신호가 확인되면 일반 업무 안내보다 경고와 공식 채널 확인을 먼저 제공합니다. |
 
-> **안내:** 화면의 지점별 대기시간은 실시간 창구 정보가 아닌 데모용 예상값입니다. 준비물과 업무 가능 여부는 방문 전 은행 공식 채널에서 확인해 주세요.
-
 ## 시니어를 고려한 화면 설계
 
 - 한 화면에서 한 가지 핵심 행동에 집중합니다.
@@ -103,7 +111,14 @@ flowchart LR
   </tr>
 </table>
 
-## System Architecture
+## 안내 범위
+
+- **은행 방문 준비를 돕습니다.** 금융 거래를 실행하거나 지점 방문을 예약하지 않습니다.
+- **대기시간은 데모용 예상값입니다.** 실시간 창구 현황이나 실제 대기시간을 보장하지 않습니다.
+- **방문 전 공식 채널 확인이 필요합니다.** 준비물과 업무 가능 여부는 은행 공식 안내를 기준으로 최종 확인해 주세요.
+- **금융사기 의심 신호를 안내합니다.** 경고는 입력 내용에 기반하며, 감지되지 않았다는 이유만으로 안전한 요청임을 보장하지 않습니다.
+
+## 시스템 구성
 
 ```mermaid
 flowchart LR
@@ -116,11 +131,11 @@ flowchart LR
         API --> DB[("MySQL 8.0")]
     end
 
-    API --> STT["NAVER CLOVA CSR"]
-    API --> AI["Gemini API"]
+    API --> STT["NAVER CLOVA CSR<br/>음성 인식"]
+    API --> AI["Gemini API<br/>업무 분류·금융사기 의심 신호 분석"]
 ```
 
-## Tech Stack
+## 기술 스택
 
 | Category | Technologies |
 | --- | --- |
@@ -131,7 +146,14 @@ flowchart LR
 | **Infrastructure** | ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white) ![AWS EC2](https://img.shields.io/badge/AWS_EC2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=white) ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white) ![Nginx](https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white) ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white) |
 | **Test · Quality** | ![Vitest](https://img.shields.io/badge/Vitest-6E9F18?style=for-the-badge&logo=vitest&logoColor=white) ![JUnit 5](https://img.shields.io/badge/JUnit_5-25A162?style=for-the-badge&logo=junit5&logoColor=white) ![ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white) ![Oxlint](https://img.shields.io/badge/Oxlint-111111?style=for-the-badge) ![Prettier](https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=black) |
 
-## Team 효도과자
+## 저장소
+
+| 저장소 | 역할 |
+| --- | --- |
+| [Frontend](https://github.com/eobuba-official/frontend) | Vue 기반 사용자 화면, 음성·텍스트 입력, 준비물 체크와 지점·시간 선택 |
+| [Backend](https://github.com/eobuba-official/backend) | 음성 인식·업무 분류 연동, 방문 판단, 준비물·지점·시간 추천 API |
+
+## 팀 효도과자
 
 <table>
   <tr>
